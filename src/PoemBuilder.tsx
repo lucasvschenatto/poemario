@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, FlatList, Text, StyleSheet, Image } from 'react-native'
-import { createRequire } from 'module';
+import { createRequire } from 'module'
 
 type Verse = {
-    text: string;
-    image: string;
-    key: string;
+    text: string
+    image: string
+    key: string
 }
 const verses:Array<Verse> = [
     {
@@ -27,7 +27,7 @@ const verses:Array<Verse> = [
         text:'E teu amor com o meu',
         image:'004-pt.jpg',
         key:'004'
-    }
+    },
 ]
 function Item({text}:{text:string}) {
     return (
@@ -39,7 +39,7 @@ function Item({text}:{text:string}) {
                 {text}
             </Text>
         </View>
-    );
+    )
   }
 class PoemBuilder extends React.Component{
     renderItem({item}:{item:Verse}){
