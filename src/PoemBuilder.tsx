@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, FlatList, Text } from 'react-native'
+import { View, FlatList, Text, StyleSheet, Image } from 'react-native'
+import { createRequire } from 'module';
 
 type Verse = {
     text: string;
@@ -30,7 +31,14 @@ const verses:Array<Verse> = [
 ]
 function Item({text}:{text:string}) {
     return (
-        <Text>{text}</Text>
+        <View
+            style={styles.item}>
+            <Text
+                style={styles.itemText}
+                >
+                {text}
+            </Text>
+        </View>
     );
   }
 class PoemBuilder extends React.Component{
@@ -38,14 +46,48 @@ class PoemBuilder extends React.Component{
         return <Item text={item.text}></Item>
     }
     render(){
-        return (<View>
-            <FlatList
-                data={verses} 
-                renderItem={this.renderItem}
-                keyExtractor={(item)=>item.key}
-            />
+        return (
+        <View
+            style={styles.container}
+            >
+            
+            <View style={styles.offset} />
+            <View style={styles.list}>
+                <FlatList
+                    data={verses} 
+                    renderItem={this.renderItem}
+                    keyExtractor={(item)=>item.key}
+                />
+            </View>
         </View>)
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#1E2233',
+    },
+    backgroundImage:{
+        ...StyleSheet.absoluteFillObject,
+    },
+    offset:{
+        flex: 1,
+    },
+    list:{
+        flex:2,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        paddingHorizontal: 10
+    },
+    item: {
+        flex:1,
+        margin:5,
+    },
+    itemText:{
+        fontSize: 20,
+        color: '#fafafc'
+    },
+  })
 
 export default PoemBuilder
