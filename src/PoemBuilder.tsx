@@ -8,8 +8,6 @@ type Verse = {
 	image: string
 	key: number|string
 }
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
 function Item({text}:{text:string}) {
