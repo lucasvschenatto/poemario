@@ -1,7 +1,9 @@
 import React from 'react'
 import { View, SectionList, Text, StyleSheet } from 'react-native'
 import { Verse } from '../Verse'
+import verses from './verses'
 
+const poem: Verse[] = verses.slice(0,15)
 function Item({text}:Verse) {
 	return (
 		<View
@@ -17,13 +19,13 @@ function Item({text}:Verse) {
 class PoemViewer extends React.Component{
   renderItem(	{item}:{item:Verse}){
 		return <Item {...item}></Item>
-  }
-  
+	}
+
   render(){
     return (
-      <View>
-        <SectionList 
-          sections={[{data:[]}]} 
+      <View style={styles.container}>
+        <SectionList
+          sections={[{data:poem}]}
           renderItem={(item)=>this.renderItem(item)}
 
           />
