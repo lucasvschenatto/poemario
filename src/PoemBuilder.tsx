@@ -1,13 +1,9 @@
 import React from 'react'
 import { View, FlatList, Text, StyleSheet, Image, Dimensions } from 'react-native'
 import verses from './assets/verses'
+import { Verse } from './Verse'
 
 
-type Verse = {
-	text: string
-	image?: string
-	verseKey: number|string
-}
 const screenHeight = Dimensions.get('screen').height
 function Item({text}:Verse) {
 	return (
