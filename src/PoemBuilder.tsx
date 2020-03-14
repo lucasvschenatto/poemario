@@ -8,10 +8,8 @@ type Verse = {
 	image?: string
 	verseKey: number|string
 }
-const screenWidth = Dimensions.get('screen').width
 const screenHeight = Dimensions.get('screen').height
-const smallerScreenDimension = screenWidth < screenHeight? screenWidth : screenHeight
-function Item({text,verseKey}:Verse) {
+function Item({text}:Verse) {
 	return (
 		<View
 			style={styles.item}>
@@ -54,8 +52,8 @@ class PoemBuilder extends React.Component{
 
 const styles = StyleSheet.create({
 	container: {
-	  flex: 1,
-	  backgroundColor: '#000000',
+		flex: 1,
+		backgroundColor: '#000000',
 	},
 	absoluteFill:{
 		...StyleSheet.absoluteFillObject,
