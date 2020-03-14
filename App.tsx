@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
-import PoemBuilder from './src/PoemBuilder';
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
+import PoemBuilder from './src/PoemBuilder'
 
 export default function App() {
   return (
     <View
       style={styles.container}>
-      <PoemBuilder/>
     </View>
   )
 }
