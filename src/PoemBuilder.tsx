@@ -5,12 +5,13 @@ import verses from './assets/verses'
 
 type Verse = {
 	text: string
-	image: string
-	key: number|string
+	image?: string
+	verseKey: number|string
 }
-const screenWidth = Dimensions.get('screen').width;
-const screenHeight = Dimensions.get('screen').height;
-function Item({text}:{text:string}) {
+const screenWidth = Dimensions.get('screen').width
+const screenHeight = Dimensions.get('screen').height
+const smallerScreenDimension = screenWidth < screenHeight? screenWidth : screenHeight
+function Item({text,verseKey}:Verse) {
 	return (
 		<View
 			style={styles.item}>
@@ -24,22 +25,27 @@ function Item({text}:{text:string}) {
   }
 class PoemBuilder extends React.Component{
 	renderItem({item}:{item:Verse}){
-		return <Item text={item.text}></Item>
+		return <Item {...item}></Item>
 	}
 	render(){
-		console.log(verses)
 		return (
 		<View
 			style={styles.container}
 			>
 			
-			<View style={styles.offset} />
+			<View style={styles.offset}>
+			<Image
+				source={require('./assets/images/reuben-eggar-KiKBr2vclZo-unsplash.jpg')}
+				style={styles.absoluteFill}
+			/>
+			</View>
+
 			<View style={styles.listView}>
 				<FlatList
 					style={styles.list}
 					data={verses} 
 					renderItem={this.renderItem}
-					keyExtractor={(item)=>item.key.toString()}
+					keyExtractor={(item)=>item.verseKey.toString()}
 				/>
 			</View>
 		</View>)
@@ -49,9 +55,9 @@ class PoemBuilder extends React.Component{
 const styles = StyleSheet.create({
 	container: {
 	  flex: 1,
-	  backgroundColor: '#1E2233',
+	  backgroundColor: '#000000',
 	},
-	backgroundImage:{
+	absoluteFill:{
 		...StyleSheet.absoluteFillObject,
 	},
 	offset:{
