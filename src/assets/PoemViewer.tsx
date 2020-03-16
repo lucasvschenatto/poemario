@@ -3,7 +3,7 @@ import { View, SectionList, Text, StyleSheet } from 'react-native'
 import { Verse } from '../Verse'
 import verses from './verses'
 
-const poem: Verse[] = verses.slice(0,15)
+const poem: Verse[] = verses.slice(1,16)
 function Item({text}:Verse) {
 	return (
 		<View
@@ -17,17 +17,24 @@ function Item({text}:Verse) {
 	)
   }
 class PoemViewer extends React.Component{
-  renderItem(	{item}:{item:Verse}){
+	toStanzas = (poem:Verse[]):{data:Verse[]}[] =>{
+		const stanzas:{data:Verse[]}[] = []
+		for (let i = 0; i < poem.length; i = i+4) {
+			const stanzaEnd = i+4 <= poem.length? i+4 : poem.length
+			stanzas.push({data:poem.slice(i,stanzaEnd)})
+		}
+		return stanzas
+	}
+  renderItem = (	{item}:{item:Verse})=>{
 		return <Item {...item}></Item>
 	}
-
-  render(){
+  render = ()=>{
+		const stanzas = this.toStanzas(poem)
     return (
       <View style={styles.container}>
         <SectionList
-          sections={[{data:poem}]}
+          sections={stanzas}
           renderItem={(item)=>this.renderItem(item)}
-
           />
       </View>
     )
